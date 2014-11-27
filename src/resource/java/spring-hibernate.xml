@@ -15,7 +15,8 @@
 	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 	
 	<!-- 自动扫描组件，可以用逗号分隔多个包-->
-	<context:component-scan base-package="com.iwebirth.sxfj.service"></context:component-scan>
+	<context:component-scan base-package="com.iwebirth.sxfj.service"/>
+
 	<!-- PropertyPlaceholderConfigurer(容器后处理器的一个实现类,属性占位符配置器) -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
@@ -25,11 +26,9 @@
 			</list>
 		</property>
 	</bean>
-	<!-- banci.prop-->
-	<bean id="jParam" class="com.iwebirth.sxfj.util.JParam">
-		<property name="clearTime" value="${cleartime}"/>
-		<property name="clearPeriod"  value="${clearperiod}"/>
-		<property name="whitelistRegex"  value="${whitelistregex}"/>
+	
+	<bean id="whitelistFilter" class="com.iwebirth.sxfj.codec.WhitelistFilter">
+		<property name="addrRegex" value="${whitelistregex}"></property>
 	</bean>
 	<!-- 定义数据源bean 使用C3P0数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -66,8 +65,6 @@
 		</property>
 	</bean>
 	
-	<!-- dao层实现，注入sessionFactory -->
-	<!--  <bean id="personHibernateDao" class="yy.dao.model.PersonHibernateDao"/>  -->
 
 	<!-- 事务管理器 -->
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">

@@ -30,7 +30,15 @@ public class WhitelistFilter extends IoFilterAdapter {
     private final List<Subnet> whitelist = new CopyOnWriteArrayList<Subnet>();  
     //默认匹配所有
     private String addrRegex = "\\.*"; 
-    private final static Logger LOGGER = Logger.getLogger(WhitelistFilter.class);  
+    
+    public String getAddrRegex() {
+		return addrRegex;
+	}
+	public void setAddrRegex(String addrRegex) {
+		this.addrRegex = addrRegex;
+	}
+
+	private final static Logger LOGGER = Logger.getLogger(WhitelistFilter.class);  
     /**
      * 在构造函数中完成白名单列表
      * @param InetAddress[] addresses : 白名单数组
@@ -210,5 +218,9 @@ public class WhitelistFilter extends IoFilterAdapter {
             }
         }  
         return false;  
-    }  
+    } 
+    
+    public WhitelistFilter(){
+    	
+    }
 }  

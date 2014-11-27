@@ -4,15 +4,16 @@ import java.sql.Date;
 import java.sql.Time;
 
 import com.iwebirth.sxfj.model.AirJetModel;
+import com.iwebirth.sxfj.model.RapierModel;
 
-public class AirjetModelParser {
+public class ModelParser {
 	/**
 	 * @param dataFrame 客户端发送来的数据帧(airjet)
 	 * 前12个字符分别是帧头\命令标识\机器型号
 	 * 最后4个字符为帧尾
 	 * 中间26个 4字符数据(16进制，最大为FFFF)
 	 * **/
-	public static AirJetModel transforStringToAirJetModel(String dataFrame){
+	public static AirJetModel parseToAirJetModel(String dataFrame){
 		AirJetModel airModel = new AirJetModel();
 		int[] d = new int[26];
 		try{
@@ -55,5 +56,46 @@ public class AirjetModelParser {
 			airModel = null;
 		}	
 		return airModel;
+	}
+	
+	/**
+	 * 剑杆织机数据模型转换
+	 * **/
+	public static RapierModel parseToRapierModel(String dataFrame){
+		RapierModel model = new RapierModel();
+		int[] d = new int[22]; 
+		try{
+			for(int i=0;i<d.length;i++){
+				d[i] = Integer.parseInt(dataFrame.substring(12+i*4, 16+i*4),16);
+			}
+			model.setMachineSno(dataFrame.substring(8, 12));
+			model.setJingTingNumber(d[0]);
+			model.setWeiTingNumber(d[1]);
+			model.setWholePowerTime(d[2]);
+			model.setWholeRunTime(d[3]);
+			model.setTeamOnePowerTime(d[4]);
+			model.setTeamOneRunTime(d[5]);
+			model.setTeamTwoPowerTime(d[6]);
+			model.setTeamTwoRunTime(d[7]);
+			model.setTeamThreePowerTime(d[8]);
+			model.setTeamThreeRunTime(d[9]);
+			model.setTeamFourPowerTime(d[10]);
+			model.setTeamFourRunTime(d[11]);
+			model.setWholeOutput(d[12]);
+			model.setTeamOneOutput(d[13]);
+			model.setTeamTwoOutput(d[14]);
+			model.setTeamThreeOutput(d[15]);
+			model.setTeamFourOutput(d[16]);
+			model.setWholeStartRate(d[17]);
+			model.setTeamOneStartRate(d[18]);
+			model.setTeamTwoStartRate(d[19]);
+			model.setTeamThreeStartRate(d[20]);
+			model.setTeamFourStartRate(d[21]);
+			//时间
+			model.setTimeInMillis(System.currentTimeMillis());			
+		}catch(Exception e){
+			model = null;
+		}
+		return model;
 	}
 }

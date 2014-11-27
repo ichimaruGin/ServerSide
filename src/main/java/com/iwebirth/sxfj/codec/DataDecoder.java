@@ -16,8 +16,9 @@ import org.apache.mina.filter.codec.CumulativeProtocolDecoder;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 
 import com.iwebirth.sxfj.model.AirJetModel;
+import com.iwebirth.sxfj.model.RapierModel;
 import com.iwebirth.sxfj.server.ClearTaskManager;
-import com.iwebirth.sxfj.server.Server;
+import com.iwebirth.sxfj.server.AIServer;
 import com.iwebirth.sxfj.util.JParam;
 
 public class DataDecoder extends CumulativeProtocolDecoder{
@@ -42,7 +43,7 @@ public class DataDecoder extends CumulativeProtocolDecoder{
 					if("0001".equals(frame.substring(4, 8))){
 						//"0001"表示该帧时从客户端发来的具体数据
 						session.setAttribute("command", JParam.AIR_DATA_COMMAND);
-						AirJetModel model = AirjetModelParser.transforStringToAirJetModel(frame);						
+						AirJetModel model = ModelParser.parseToAirJetModel(frame);						
 						if(model != null)
 							out.write(model);
 					}else if("0002".equals(frame.substring(4, 8))){
@@ -50,9 +51,23 @@ public class DataDecoder extends CumulativeProtocolDecoder{
 						out.write(frame);
 					}
 				}
-				if("RP".equals(frame.substring(8,10))){
+				if("RA".equals(frame.substring(8,10))){
 					//剑杆织机 rapier loom
-					
+					if("0001".equals(frame.substring(4, 8))){
+						if(JParam.CONNECT_SYMBOL.equals((String)session.getAttribute("status"))){
+							//表示该会话处于连接成功状态,可以收发数据(这个条件要求终端必须先发送0002那个命令帧才可以发送具体的数据帧)
+							session.setAttribute("command", JParam.RA_DATA_COMMAND);
+							RapierModel model = ModelParser.parseToRapierModel(frame);
+							if(model != null)
+								out.write(model);
+						}else{
+							System.out.println("终端需要先发送0002命令帧");
+						}
+					}else if("0002".equals(frame.substring(4,8))){
+						session.setAttribute("command", JParam.RA_CONNECT_COMMAND); //表示该数据帧是请求连接的数据帧
+						session.setAttribute("status", JParam.CONNECT_SYMBOL);//表示该会话处于连接成功状态
+						out.write(frame);
+					}
 				}
 			}else{
 				System.out.println("非法数据帧头尾");

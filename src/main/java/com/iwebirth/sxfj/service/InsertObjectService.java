@@ -5,33 +5,55 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.iwebirth.sxfj.model.AirJetModel;
-@Service
+import com.iwebirth.sxfj.model.RapierModel;
+@Component
 public class InsertObjectService {
-	@Autowired
+	@Autowired	
 	private  SessionFactory sf;
-	public void insert(Object obj){
-		Session session = sf.getCurrentSession();
-
-		if(obj instanceof AirJetModel){
-			System.out.println("insert");
-			session.save((AirJetModel)obj);
-			session.flush();
+	
+	public void insertSingleModel(Object model){
+		try{
+			Session session = sf.getCurrentSession();
+			session.save(model);
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	
 	public  void insertAirJetList(List<AirJetModel> airJetList){
-		Session session = sf.getCurrentSession();
-		int i = 0;
-		for(AirJetModel model : airJetList){
-			session.save(model);
-			if(++i > 20){
-				session.flush();
-				i = 0;
+		try{
+			Session session = sf.getCurrentSession();
+			int i = 0;
+			for(AirJetModel model : airJetList){
+				session.save(model);
+				if(++i > 20){
+					session.flush();
+					i = 0;
+				}
 			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	
+	public void insertRapierList(List<RapierModel> rapierList){
+		try{
+			Session session = sf.getCurrentSession();
+			int i = 0;
+			for(RapierModel model : rapierList){
+				session.save(model);
+				if(++i > 20){
+					session.flush();
+					i = 0;
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 }
