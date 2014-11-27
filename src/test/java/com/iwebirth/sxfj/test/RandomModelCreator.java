@@ -1,16 +1,17 @@
-package com.iwebirth.sxfj.random;
+package com.iwebirth.sxfj.test;
 
 import java.sql.Date;
 import java.sql.Time;
 
 import com.iwebirth.sxfj.model.AirJetModel;
+import com.iwebirth.sxfj.model.RapierModel;
 
 /**
- * 产生随机airjet模型数据并返回
+ * 产生随机随机模型数据并返回
  * **/
-public class RandomAirjetModelCreator {
+public class RandomModelCreator {
 	/**
-	 * @param dataFrame 客户端发送来的数据帧(airjet)
+	 * 喷气织机
 	 * 前12个字符分别是帧头\命令标识\机器型号
 	 * 最后4个字符为帧尾
 	 * 中间26个 4字符数据(16进制，最大为FFFF)
@@ -26,8 +27,8 @@ public class RandomAirjetModelCreator {
 			switch(count){
 				case 0: airModel.setMachineSno("AI01");break;
 				case 1: airModel.setMachineSno("AI02");break;
-				case 2: airModel.setMachineSno("RA01");break;
-				case 3: airModel.setMachineSno("RA02");break;
+				case 2: airModel.setMachineSno("AI03");break;
+				case 3: airModel.setMachineSno("AI04");break;
 			}			
 			airModel.setWeaveLength(d[0]);
 			airModel.setWeiNumber(d[1]);
@@ -63,5 +64,54 @@ public class RandomAirjetModelCreator {
 			airModel = null;
 		}	
 		return airModel;
+	}
+	
+	/**
+	 * 产生随机剑杆织机参数
+	 * 前12个字符分别是帧头\命令标识\机器型号
+	 * 最后4个字符为帧尾
+	 * **/
+	public static RapierModel createRandomRapierModel(){
+		RapierModel model = new RapierModel();
+		int count = (int)(4*Math.random()+1);
+		int[] d = new int[22]; 
+		try{
+			for(int i=0;i<d.length;i++){
+				d[i] = (int) (10000*Math.random()+1);
+			}
+			switch(count){
+			case 0: model.setMachineSno("RA01");break;
+			case 1: model.setMachineSno("RA02");break;
+			case 2: model.setMachineSno("RA03");break;
+			case 3: model.setMachineSno("RA04");break;
+			}	
+			model.setJingTingNumber(d[0]);
+			model.setWeiTingNumber(d[1]);
+			model.setWholePowerTime(d[2]);
+			model.setWholeRunTime(d[3]);
+			model.setTeamOnePowerTime(d[4]);
+			model.setTeamOneRunTime(d[5]);
+			model.setTeamTwoPowerTime(d[6]);
+			model.setTeamTwoRunTime(d[7]);
+			model.setTeamThreePowerTime(d[8]);
+			model.setTeamThreeRunTime(d[9]);
+			model.setTeamFourPowerTime(d[10]);
+			model.setTeamFourRunTime(d[11]);
+			model.setWholeOutput(d[12]);
+			model.setTeamOneOutput(d[13]);
+			model.setTeamTwoOutput(d[14]);
+			model.setTeamThreeOutput(d[15]);
+			model.setTeamFourOutput(d[16]);
+			model.setWholeStartRate(d[17]);
+			model.setTeamOneStartRate(d[18]);
+			model.setTeamTwoStartRate(d[19]);
+			model.setTeamThreeStartRate(d[20]);
+			model.setTeamFourStartRate(d[21]);
+			//时间
+			model.setTimeInMillis(System.currentTimeMillis());			
+		}catch(Exception e){
+			model = null;
+		}
+		return model;
 	}
 }
