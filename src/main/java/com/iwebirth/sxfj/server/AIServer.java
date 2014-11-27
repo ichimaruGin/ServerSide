@@ -37,7 +37,7 @@ public class AIServer {
 	}
 	public static void main(String[] args) throws UnknownHostException{
 		IoAcceptor ioAcceptor = new NioSocketAcceptor();
-		ioAcceptor.getFilterChain().addFirst("whiltelistFilter", new ReferenceCountingFilter(spring.getBean(WhitelistFilter.class)));
+		//ioAcceptor.getFilterChain().addFirst("whiltelistFilter", new ReferenceCountingFilter(spring.getBean(WhitelistFilter.class)));
 		ioAcceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new MyProtocolCodecFactory(Charset.forName("UTF-8"))));
 		ioAcceptor.setHandler(new ServerIoHandler());
 		//设置全局会话的属性(当然也可以在handler中单独修改，session.getConfig().setXXX)

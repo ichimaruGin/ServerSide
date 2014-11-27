@@ -31,7 +31,7 @@ public class RAServer {
 	}
 	public static void main(String[] args){
 		IoAcceptor ioAcceptor = new NioSocketAcceptor();
-		ioAcceptor.getFilterChain().addFirst("whiteListFilter", new ReferenceCountingFilter(spring.getBean(WhitelistFilter.class))); //白名单过滤器
+		//ioAcceptor.getFilterChain().addFirst("whiteListFilter", new ReferenceCountingFilter(spring.getBean(WhitelistFilter.class))); //白名单过滤器
 		ioAcceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new MyProtocolCodecFactory(Charset.forName("UTF-8"))));  //协议解码器
 		ioAcceptor.setHandler(new ServerIoHandler()); //业务处理
 		ioAcceptor.getSessionConfig().setReadBufferSize(2048);

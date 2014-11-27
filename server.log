@@ -87,3 +87,4 @@ java.lang.NullPointerException
 2014-11-27 18:22:32 ERROR com.iwebirth.sxfj.server.RAServer.main:45行 - server启动错误，错误异常: Address already in use: bind
 2014-11-27 19:04:01 ERROR com.iwebirth.sxfj.server.RAServer.main:50行 - server启动错误，错误异常: Address already in use: bind
 2014-11-27 19:20:12 ERROR com.iwebirth.sxfj.server.RAServer.main:53行 - server启动错误，错误异常: Address already in use: bind
+2014-11-27 21:08:29 ERROR com.iwebirth.sxfj.server.AIServer.main:58行 - server启动错误，错误异常: Address already in use: bind
