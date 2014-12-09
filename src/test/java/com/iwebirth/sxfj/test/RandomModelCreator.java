@@ -18,17 +18,17 @@ public class RandomModelCreator {
 	 * **/
 	public static AirJetModel createRandomAirjetModel(){
 		AirJetModel airModel = new AirJetModel();
-		int count = (int)(4*Math.random());
+		int count = (int)(4*Math.random()); //1,2,3,4
 		int[] d = new int[26];
 		try{
 			for(int i=0;i<26;i++){
 				d[i] = (int)(10000*Math.random()+1);
 			}
 			switch(count){
-				case 0: airModel.setMachineSno("AI01");break;
-				case 1: airModel.setMachineSno("AI02");break;
-				case 2: airModel.setMachineSno("AI03");break;
-				case 3: airModel.setMachineSno("AI04");break;
+				case 1: airModel.setMachineSno("AI01");break;
+				case 2: airModel.setMachineSno("AI02");break;
+				case 3: airModel.setMachineSno("AI03");break;
+				case 4: airModel.setMachineSno("AI04");break;
 				default:airModel.setMachineSno("AI05");break;
 			}			
 			airModel.setWeaveLength(d[0]);
@@ -74,17 +74,17 @@ public class RandomModelCreator {
 	 * **/
 	public static RapierModel createRandomRapierModel(){
 		RapierModel model = new RapierModel();
-		int count = (int)(4*Math.random()+1);
+		int count = (int)(4*Math.random()+1); //1,2,3,4
 		int[] d = new int[22]; 
 		try{
 			for(int i=0;i<d.length;i++){
 				d[i] = (int) (10000*Math.random()+1);
 			}
 			switch(count){
-			case 0: model.setMachineSno("RA01");break;
-			case 1: model.setMachineSno("RA02");break;
-			case 2: model.setMachineSno("RA03");break;
-			case 3: model.setMachineSno("RA04");break;
+			case 1: model.setMachineSno("RA01");break;
+			case 2: model.setMachineSno("RA02");break;
+			case 3: model.setMachineSno("RA03");break;
+			case 4: model.setMachineSno("RA04");break;
 			default:model.setMachineSno("RA05");break;
 			}	
 			model.setJingTingNumber(d[0]);
