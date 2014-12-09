@@ -92,6 +92,8 @@ public class ModelParser {
 			model.setTeamThreeStartRate(d[20]);
 			model.setTeamFourStartRate(d[21]);
 			//时间
+			model.setUploadDate(new Date(System.currentTimeMillis()));
+			model.setUploadTime(new Time(System.currentTimeMillis()));
 			model.setTimeInMillis(System.currentTimeMillis());			
 		}catch(Exception e){
 			model = null;

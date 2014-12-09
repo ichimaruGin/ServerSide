@@ -88,3 +88,5 @@ java.lang.NullPointerException
 2014-11-27 19:04:01 ERROR com.iwebirth.sxfj.server.RAServer.main:50行 - server启动错误，错误异常: Address already in use: bind
 2014-11-27 19:20:12 ERROR com.iwebirth.sxfj.server.RAServer.main:53行 - server启动错误，错误异常: Address already in use: bind
 2014-11-27 21:08:29 ERROR com.iwebirth.sxfj.server.AIServer.main:58行 - server启动错误，错误异常: Address already in use: bind
+2014-12-09 22:17:06 ERROR org.hibernate.AssertionFailure.<init>:43行 - HHH000099: an assertion failure occured (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null id in com.iwebirth.sxfj.model.RapierModel entry (don't flush the Session after an exception occurs)
+2014-12-09 22:18:59 ERROR org.hibernate.AssertionFailure.<init>:43行 - HHH000099: an assertion failure occured (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null id in com.iwebirth.sxfj.model.RapierModel entry (don't flush the Session after an exception occurs)

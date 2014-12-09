@@ -29,6 +29,7 @@ public class RandomModelCreator {
 				case 1: airModel.setMachineSno("AI02");break;
 				case 2: airModel.setMachineSno("AI03");break;
 				case 3: airModel.setMachineSno("AI04");break;
+				default:airModel.setMachineSno("AI05");break;
 			}			
 			airModel.setWeaveLength(d[0]);
 			airModel.setWeiNumber(d[1]);
@@ -84,6 +85,7 @@ public class RandomModelCreator {
 			case 1: model.setMachineSno("RA02");break;
 			case 2: model.setMachineSno("RA03");break;
 			case 3: model.setMachineSno("RA04");break;
+			default:model.setMachineSno("RA05");break;
 			}	
 			model.setJingTingNumber(d[0]);
 			model.setWeiTingNumber(d[1]);
@@ -108,6 +110,8 @@ public class RandomModelCreator {
 			model.setTeamThreeStartRate(d[20]);
 			model.setTeamFourStartRate(d[21]);
 			//时间
+			model.setUploadDate(new Date(System.currentTimeMillis()));
+			model.setUploadTime(new Time(System.currentTimeMillis()));
 			model.setTimeInMillis(System.currentTimeMillis());			
 		}catch(Exception e){
 			model = null;

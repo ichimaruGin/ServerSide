@@ -1,5 +1,8 @@
 package com.iwebirth.sxfj.model;
 
+import java.sql.Date;
+import java.sql.Time;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +16,7 @@ public class RapierModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	@Column(name="machineSno",nullable=false)
+	@Column(nullable=false)
 	String machineSno;
 	@Column(nullable=false)
 	Integer jingTingNumber;
@@ -59,8 +62,25 @@ public class RapierModel {
 	Integer teamThreeStartRate;
 	@Column(nullable=false)
 	Integer teamFourStartRate;
+	@Column
+	private Date uploadDate;
+	@Column
+	private Time uploadTime;
 	@Column(nullable=false)
-	Long timeInMillis;
+	private Long timeInMillis;
+
+	public Date getUploadDate() {
+		return uploadDate;
+	}
+	public void setUploadDate(Date uploadDate) {
+		this.uploadDate = uploadDate;
+	}
+	public Time getUploadTime() {
+		return uploadTime;
+	}
+	public void setUploadTime(Time uploadTime) {
+		this.uploadTime = uploadTime;
+	}
 	public Integer getId() {
 		return id;
 	}
