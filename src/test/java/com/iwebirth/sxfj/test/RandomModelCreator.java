@@ -18,7 +18,7 @@ public class RandomModelCreator {
 	 * **/
 	public static AirJetModel createRandomAirjetModel(){
 		AirJetModel airModel = new AirJetModel();
-		int count = (int)(4*Math.random()); //1,2,3,4
+		int count = (int)(4*Math.random()+1); //1,2,3,4
 		int[] d = new int[26];
 		try{
 			for(int i=0;i<26;i++){
