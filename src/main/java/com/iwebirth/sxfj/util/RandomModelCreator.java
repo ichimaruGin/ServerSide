@@ -1,4 +1,4 @@
-package com.iwebirth.sxfj.test;
+package com.iwebirth.sxfj.util;
 
 import java.sql.Date;
 import java.sql.Time;
